@@ -29,14 +29,14 @@ public class RVUser {
     }
 
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-    public void setGenderId(Integer genderId) {
-        this.genderId = genderId;
-    }
-    public void setUserId(Integer userId) {this.userId = userId;}
-    public void setEmail(String email) {
-        this.email = email;
-    }
+//    public void setUserName(String userName) {
+//        this.userName = userName;
+//    }
+//    public void setGenderId(Integer genderId) {
+//        this.genderId = genderId;
+//    }
+//    public void setUserId(Integer userId) {this.userId = userId;}
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 }
