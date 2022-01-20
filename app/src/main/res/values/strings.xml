@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Users List</string>
+    <array name="hobbies">
+        <item>Cricket</item>
+        <item>Movies</item>
+        <item>Reading</item>
+        <item>Writing</item>
+    </array>
+</resources>
