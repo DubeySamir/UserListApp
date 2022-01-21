@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.sdcode.userslist.Classes.Messagee;
+import com.sdcode.userslist.Database.DatabaseHelper;
 
 import java.util.ArrayList;
 

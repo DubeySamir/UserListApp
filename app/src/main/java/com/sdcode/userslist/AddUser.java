@@ -15,6 +15,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.sdcode.userslist.Classes.Messagee;
+import com.sdcode.userslist.Database.DatabaseHelper;
+
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -36,6 +39,7 @@ public class AddUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
 //        getSupportActionBar().setTitle("Users");
+
         initialization();
 
 
@@ -51,13 +55,13 @@ public class AddUser extends AppCompatActivity {
 
             Cursor userDataCursor = readableDatabase.rawQuery("select * from AllUsers where _id = " + userId, null);
 
-            Log.d("Edit User cursor", "User Data = " +  DatabaseUtils.dumpCursorToString(userDataCursor));
+            Log.d("Edit User cursor", "User Data = " + DatabaseUtils.dumpCursorToString(userDataCursor));
 
-            if(userDataCursor.getCount() == 0){
-                Messagee.message(getApplicationContext(),"User Not Found");
-            }else{
+            if (userDataCursor.getCount() == 0) {
+                Messagee.message(getApplicationContext(), "User Not Found");
+            } else {
                 userDataCursor.moveToFirst();
-                do{
+                do {
                     String fName = userDataCursor.getString(1);
                     String lName = userDataCursor.getString(2);
                     String uname = userDataCursor.getString(3);
@@ -68,15 +72,15 @@ public class AddUser extends AppCompatActivity {
 
 
                     firstNameInputEditText.setText(fName);
-                    lastNameInputEditText.setText(lName + " - " + genderId);
+                    lastNameInputEditText.setText(lName);
                     userNameInputEditText.setText(uname);
                     emailInputEditText.setText(email);
                     phoneInputEditText.setText(phone);
                     date_picker_InputEditText.setText(bDate);
 
-                    if(genderId == 1){
+                    if (genderId == 1) {
                         maleRadioButton.setChecked(true);
-                    }else{
+                    } else {
                         femaleRadioButton.setChecked(true);
                     }
 
@@ -97,7 +101,7 @@ public class AddUser extends AppCompatActivity {
                             chk_writing.setChecked(true);
                         }
                     }
-                }while (userDataCursor.moveToNext());
+                } while (userDataCursor.moveToNext());
             }
             readableDatabase.close();
         } else {
@@ -131,7 +135,7 @@ public class AddUser extends AppCompatActivity {
                     }
 
 
-                    if (action.equals("AddUser")){
+                    if (action.equals("AddUser")) {
                         DatabaseHelper helper = new DatabaseHelper(getApplicationContext());
                         SQLiteDatabase database = helper.getWritableDatabase();
 
@@ -182,7 +186,7 @@ create table hobbies(user_id INTEGER, hobbie VARCHAR(50), FOREIGN KEY (user_id) 
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(i);
                         finish();
-                    }else{
+                    } else {
                         DatabaseHelper helper = new DatabaseHelper(getApplicationContext());
                         SQLiteDatabase database = helper.getWritableDatabase();
 
@@ -218,7 +222,7 @@ create table hobbies(user_id INTEGER, hobbie VARCHAR(50), FOREIGN KEY (user_id) 
 
                         ContentValues valuesHobbies = new ContentValues();
 
-                        database.delete("hobbies","user_id=?",new String[]{userId});
+                        database.delete("hobbies", "user_id=?", new String[]{userId});
                         for (String hobby : hobbies) {
                             valuesHobbies.put("user_id", userId);
                             valuesHobbies.put("hobbie", hobby);

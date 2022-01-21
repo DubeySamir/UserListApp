@@ -1,10 +1,12 @@
-package com.sdcode.userslist;
+package com.sdcode.userslist.Database;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
+import com.sdcode.userslist.Classes.Messagee;
+import com.sdcode.userslist.models.ModelClassRVUser;
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -48,10 +50,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<RVUser> getAllUsersData() {
+    public ArrayList<ModelClassRVUser> getAllUsersData() {
 
         SQLiteDatabase database = this.getReadableDatabase();
-        ArrayList<RVUser> objectModelClassList = new ArrayList<>();
+        ArrayList<ModelClassRVUser> objectModelClassList = new ArrayList<>();
 
         Cursor cursor = database.rawQuery("select * from AllUsers", null);
 
@@ -64,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String userName = cursor.getString(3);
                 String userEmail = cursor.getString(4);
 
-                objectModelClassList.add(new RVUser(userId,genderId, userName, userEmail));
+                objectModelClassList.add(new ModelClassRVUser(userId,genderId, userName, userEmail));
             }
             return objectModelClassList;
         } else {

@@ -1,14 +1,14 @@
-package com.sdcode.userslist;
+package com.sdcode.userslist.models;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
-public class RVUser {
+public class ModelClassRVUser {
     private String userName;
     private Integer genderId,userId;
     private String email;
 
-    public RVUser(Integer userId, Integer genderId, String name, String email) {
+    public ModelClassRVUser(Integer userId, Integer genderId, String name, String email) {
         this.userName = name;
         this.genderId = genderId;
         this.email = email;
