@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+
+import com.sdcode.userslist.Classes.UserRVAdapter;
+import com.sdcode.userslist.Database.DatabaseHelper;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
+
 
 public class MainActivity extends AppCompatActivity {
 

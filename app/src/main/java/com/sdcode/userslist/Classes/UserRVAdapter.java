@@ -1,4 +1,4 @@
-package com.sdcode.userslist;
+package com.sdcode.userslist.Classes;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,13 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sdcode.userslist.R;
+import com.sdcode.userslist.models.ModelClassRVUser;
+
 import java.util.ArrayList;
 
 public class UserRVAdapter extends RecyclerView.Adapter<UserRVAdapter.UsersRVViewHolder>{
 
     private UserRVAdapter.OnItemClickListener mListener;
 
-    ArrayList<RVUser> modelClassList;
+    ArrayList<ModelClassRVUser> modelClassList;
     private Context context;
 
     public interface OnItemClickListener{
@@ -32,7 +35,7 @@ public class UserRVAdapter extends RecyclerView.Adapter<UserRVAdapter.UsersRVVie
         mListener = listener;
     }
 
-    public UserRVAdapter(ArrayList<RVUser> objectModelClassList, Context context) {
+    public UserRVAdapter(ArrayList<ModelClassRVUser> objectModelClassList, Context context) {
         modelClassList = objectModelClassList;
         this.context = context;
     }
@@ -48,7 +51,7 @@ public class UserRVAdapter extends RecyclerView.Adapter<UserRVAdapter.UsersRVVie
     @Override
     public void onBindViewHolder(@NonNull UsersRVViewHolder holder, int position) {
 
-        RVUser modelClass = modelClassList.get(position);
+        ModelClassRVUser modelClass = modelClassList.get(position);
         holder.userName.setText(modelClass.getUserName());
         holder.userEmail.setText(modelClass.getEmail());
         Integer userId = modelClass.getUserId();
