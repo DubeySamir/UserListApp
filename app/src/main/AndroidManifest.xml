@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UsersList">
         <activity
+            android:name=".EditUser"
+            android:exported="false" />
+        <activity
             android:name=".ViewUser"
             android:exported="false" />
         <activity

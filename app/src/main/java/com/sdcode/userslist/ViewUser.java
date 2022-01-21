@@ -4,11 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
@@ -16,6 +21,7 @@ public class ViewUser extends AppCompatActivity {
 
     TextView userNameTV, fNameTV, lNameTV, genderTV, emailTV, phoneTV, bDateTV, hobiesTV;
     ImageView avatarImg;
+    MaterialButton deleteUser,editUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +37,47 @@ public class ViewUser extends AppCompatActivity {
         phoneTV = findViewById(R.id.phoneTV);
         bDateTV = findViewById(R.id.bDateTV);
         hobiesTV = findViewById(R.id.hobiesTV);
+        deleteUser = findViewById(R.id.deleteUser);
+        editUser = findViewById(R.id.editUser);
+
+
 
 
         Intent i = getIntent();
-        final String username = i.getStringExtra("username");
-        userNameTV.setText("Uid " + username);
+        final String userId = i.getStringExtra("userId");
+        userNameTV.setText(userId);
+
+
+        deleteUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+                int isDeleted =  db.delete("AllUsers","_id = "+ userId,null);
+
+                if(isDeleted > 0){
+                    db.close();
+                    Messagee.message(getApplicationContext(),"User Deleted");
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    finish();
+                }else{
+                    Messagee.message(getApplicationContext(),"Can't delete User");
+                }
+            }
+        });
+
+
+        editUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), AddUser.class);
+                i.putExtra("action", "EditUser");
+                i.putExtra("userId", userId);
+                startActivity(i);
+            }
+        });
+
 
         DatabaseHelper helper = new DatabaseHelper(getApplicationContext());
         SQLiteDatabase database = helper.getReadableDatabase();
@@ -48,11 +90,11 @@ public class ViewUser extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "No data!", Toast.LENGTH_SHORT).show();
         } else {
             while (cursorUser.moveToNext()) {
-                int userId = cursorUser.getInt(0);
-                if (Integer.parseInt(username) == userId) {
+                int tempUserId = cursorUser.getInt(0);
+                if (Integer.parseInt(userId) == tempUserId) {
 
-                    String fname = cursorUser.getString(1);
-                    String lname = cursorUser.getString(2);
+                    String fName = cursorUser.getString(1);
+                    String lName = cursorUser.getString(2);
                     String uname = cursorUser.getString(3);
                     int genderId = cursorUser.getInt(6);
                     String email = cursorUser.getString(4);
@@ -60,10 +102,12 @@ public class ViewUser extends AppCompatActivity {
                     String bDate = cursorUser.getString(7);
                     hobiesTV = findViewById(R.id.hobiesTV);
 
-                    fNameTV.setText(fname);
-                    lNameTV.setText(lname);
+                    Log.d("View User cursor", "User Data = " +  DatabaseUtils.dumpCursorToString(cursorUser));
+
+                    fNameTV.setText(fName);
+                    lNameTV.setText(lName);
                     userNameTV.setText(uname);
-                    bDateTV.setText("dt - " + bDate);
+                    bDateTV.setText(bDate);
 
                     if (genderId == 1) {
                         genderTV.setText("Male");
@@ -81,7 +125,7 @@ public class ViewUser extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "No Hobbies!", Toast.LENGTH_SHORT).show();
                     } else {
                         while (cursorHobies.moveToNext()) {
-                            if (cursorHobies.getInt(0) == userId) {
+                            if (cursorHobies.getInt(0) == tempUserId) {
                                 hobbies.add(cursorHobies.getString(1));
                             }
                         }
@@ -91,6 +135,7 @@ public class ViewUser extends AppCompatActivity {
                 }
             }
             cursorUser.close();
+            database.close();
         }
 
     }

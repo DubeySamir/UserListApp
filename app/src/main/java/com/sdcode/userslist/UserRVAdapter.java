@@ -42,13 +42,11 @@ public class UserRVAdapter extends RecyclerView.Adapter<UserRVAdapter.UsersRVVie
     public UsersRVViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.list_item_user,parent,false);
-        return new UsersRVViewHolder(view,mListener);
+        return new UsersRVViewHolder(view, mListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull UsersRVViewHolder holder, int position) {
-//        String userName = data[position];
-//        holder.userName.setText(userName);
 
         RVUser modelClass = modelClassList.get(position);
         holder.userName.setText(modelClass.getUserName());
@@ -72,7 +70,7 @@ public class UserRVAdapter extends RecyclerView.Adapter<UserRVAdapter.UsersRVVie
         return 0;
     }
 
-    public class UsersRVViewHolder extends RecyclerView.ViewHolder{
+    public static class UsersRVViewHolder extends RecyclerView.ViewHolder{
         AppCompatImageView avatarImage;
         TextView userName,userEmail;
 
