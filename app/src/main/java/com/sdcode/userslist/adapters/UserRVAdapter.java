@@ -1,4 +1,4 @@
-package com.sdcode.userslist.Classes;
+package com.sdcode.userslist.adapters;
 
 import android.content.Context;
 import android.util.Log;

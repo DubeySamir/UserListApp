@@ -1,4 +1,4 @@
-package com.sdcode.userslist.Classes;
+package com.sdcode.userslist.classes;
 
 import android.content.Context;
 import android.widget.Toast;

@@ -1,14 +1,12 @@
 package com.sdcode.userslist;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.google.android.material.button.MaterialButton;
+import com.sdcode.userslist.base.BaseActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 MaterialButton btn_login;
 
     @Override
@@ -16,14 +14,20 @@ MaterialButton btn_login;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        initUi();
+        initData();
+    }
+
+    @Override
+    protected void initUi(){
+        super.initData();
+
         btn_login = findViewById(R.id.btn_login);
+        btn_login.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), MainActivity.class)));
+    }
 
-
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-        });
+    @Override
+    protected void initData(){
+        super.initData();
     }
 }
