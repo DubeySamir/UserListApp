@@ -28,7 +28,7 @@ public class RVUser {
         return userId;
     }
 
-
+/*
 //    public void setUserName(String userName) {
 //        this.userName = userName;
 //    }
@@ -39,4 +39,7 @@ public class RVUser {
 //    public void setEmail(String email) {
 //        this.email = email;
 //    }
+
+
+ */
 }

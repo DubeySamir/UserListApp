@@ -25,11 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView usersRecyclerView = findViewById(R.id.usersRecyclerView);
         usersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        String[] users = {"samir","mayank","viral","Jordin Curry","Humberto Ross","Zachariah Decker",
-                "Franklin Cooke","Warren Suarez","Tia Knox","Myles Richmond","Leila Gross","Terrell Nielsen",
-                "Rey Fowler","Ignacio Jordan","Hayley Payne"};
-
-//        usersRecyclerView.setAdapter(new UserRVAdapter(users));
 
         databaseHelper = new DatabaseHelper(getApplicationContext());
 
@@ -45,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 //                Messagee.message(getApplicationContext(),Integer.toString(userID));
 
                 Intent i = new Intent(getApplicationContext(), ViewUser.class);
-                i.putExtra("username", Integer.toString(userID));
+                i.putExtra("userId", Integer.toString(userID));
                 startActivity(i);
             }
         });
@@ -65,7 +60,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_add_user:
-                startActivity(new Intent(getApplicationContext(),AddUser.class));
+                Intent i = new Intent(getApplicationContext(), AddUser.class);
+                i.putExtra("action", "AddUser");
+                i.putExtra("userId", "NoId");
+                startActivity(i);
                 return true;
             case R.id.menu_logout:
                 startActivity(new Intent(getApplicationContext(),LoginActivity.class));
