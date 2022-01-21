@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Users List</string>
+    <string name="SelectAllHobbiesData">SELECT * FROM hobbies</string>
+    <string name="SelectAllUsersData">SELECT * FROM AllUsers</string>
+    <string name="Male">Male</string>
+    <string name="Female">Female</string>
     <array name="hobbies">
         <item>Cricket</item>
         <item>Movies</item>

@@ -1,55 +1,59 @@
 package com.sdcode.userslist;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 
-import com.sdcode.userslist.Classes.UserRVAdapter;
-import com.sdcode.userslist.Database.DatabaseHelper;
+import com.sdcode.userslist.adapters.UserRVAdapter;
+import com.sdcode.userslist.base.BaseActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
-    DatabaseHelper databaseHelper;
     UserRVAdapter userRVAdapter;
+    RecyclerView usersRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView usersRecyclerView = findViewById(R.id.usersRecyclerView);
+        initUi();
+        initData();
+
         usersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        databaseHelper = new DatabaseHelper(getApplicationContext());
-
-        userRVAdapter = new UserRVAdapter(databaseHelper.getAllUsersData(),getApplicationContext());
-
-        usersRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         usersRecyclerView.setAdapter(userRVAdapter);
 
-        userRVAdapter.setOnItemClickListener(new UserRVAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                Integer userID = userRVAdapter.getUserId(position);
-//                Messagee.message(getApplicationContext(),Integer.toString(userID));
+        userRVAdapter.setOnItemClickListener(position -> {
+            Integer userID = userRVAdapter.getUserId(position);
 
-                Intent i = new Intent(getApplicationContext(), ViewUser.class);
-                i.putExtra("userId", Integer.toString(userID));
-                startActivity(i);
-            }
+            Intent i = new Intent(getApplicationContext(), ViewUser.class);
+            i.putExtra("userId", Integer.toString(userID));
+            startActivity(i);
         });
     }
 
+    @Override
+    protected void initUi(){
+        super.initData();
 
+        usersRecyclerView = findViewById(R.id.usersRecyclerView);
+    }
 
+    @Override
+    protected void initData(){
+        super.initData();
+
+        userRVAdapter = new UserRVAdapter(helper.getAllUsersData(),getApplicationContext());
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){

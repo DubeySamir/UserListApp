@@ -1,11 +1,11 @@
-package com.sdcode.userslist.Database;
+package com.sdcode.userslist.database;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
-import com.sdcode.userslist.Classes.Messagee;
+import com.sdcode.userslist.classes.Messagee;
 import com.sdcode.userslist.models.ModelClassRVUser;
 import java.util.ArrayList;
 
