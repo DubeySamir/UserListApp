@@ -14,7 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.sdcode.userslist.classes.Messagee;
-import com.sdcode.userslist.base.BaseActivity;
+import com.sdcode.userslist.base.BaseClass;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
@@ -23,7 +23,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class AddUser extends BaseActivity {
+public class AddUser extends BaseClass {
 
     TextInputLayout firstNameInputLayout, lastNameInputLayout, userNameInputLayout, emailInputLayout, phoneInputLayout, date_picker_InputLayout;
     TextInputEditText firstNameInputEditText, lastNameInputEditText, userNameInputEditText, emailInputEditText, phoneInputEditText, date_picker_InputEditText;

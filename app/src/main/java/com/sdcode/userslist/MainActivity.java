@@ -8,14 +8,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 
 import com.sdcode.userslist.adapters.UserRVAdapter;
-import com.sdcode.userslist.base.BaseActivity;
+import com.sdcode.userslist.base.BaseClass;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseClass {
 
     UserRVAdapter userRVAdapter;
     RecyclerView usersRecyclerView;

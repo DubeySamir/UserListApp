@@ -12,11 +12,11 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.sdcode.userslist.classes.Messagee;
-import com.sdcode.userslist.base.BaseActivity;
+import com.sdcode.userslist.base.BaseClass;
 
 import java.util.ArrayList;
 
-public class ViewUser extends BaseActivity {
+public class ViewUser extends BaseClass {
 
     TextView userNameTV, fNameTV, lNameTV, genderTV, emailTV, phoneTV, bDateTV, hobbiesTV;
     ImageView avatarImg;

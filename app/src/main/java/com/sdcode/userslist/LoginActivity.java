@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.button.MaterialButton;
-import com.sdcode.userslist.base.BaseActivity;
+import com.sdcode.userslist.base.BaseClass;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseClass {
 MaterialButton btn_login;
 
     @Override

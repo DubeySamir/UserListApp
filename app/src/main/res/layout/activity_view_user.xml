@@ -19,7 +19,8 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/avatar_male" />
+            app:srcCompat="@drawable/avatar_male"
+            android:contentDescription="Avatar Image" />
 
         <TextView
             android:id="@+id/userNameTV"
